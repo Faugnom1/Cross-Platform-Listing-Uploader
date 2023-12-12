@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Local Storage Data</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Multi-Platform Uploader</h1>
+    </header>
+
+    <!-- Content Container -->
+    <div class="container mt-4">
+        <h2>Uploaded and Posted Data</h2>
+        <pre id="localStorageContent"></pre>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        &copy; 2023 Faugno | <a href="{{ url_for('upload_data') }}">Home</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the data from local storage
+            const savedData = localStorage.getItem("uploadedData");
+            const localStorageContent = document.getElementById("localStorageContent");
+
+            if (savedData) {
+                // Display the data as formatted JSON
+                localStorageContent.textContent = JSON.stringify(JSON.parse(savedData), null, 2);
+            } else {
+                // Display a message if no data is found
+                localStorageContent.textContent = "No data found in local storage.";
+            }
+        });
+    </script>
+</body>
+</html>

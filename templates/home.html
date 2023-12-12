@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Upload to Multiple Platforms</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Multi-Platform Uploader</h1>
+    </header>
+
+    <!-- Content Container -->
+    <div class="container mt-4">
+        <h2 class="mb-4">Upload and Post to Multiple Platforms</h2>
+        <form method="post" enctype="multipart/form-data" action="/" target="_blank" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
+
+            <!-- Checkboxes -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cloudinaryCheck" onclick="toggleFields()">
+                <label class="form-check-label" for="cloudinaryCheck">Cloudinary</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="facebookCheck" onclick="toggleFields()">
+                <label class="form-check-label" for="facebookCheck">Facebook</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="redditCheck" onclick="toggleFields()">
+                <label class="form-check-label" for="redditCheck">Reddit</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="etsyCheck" onclick="toggleFields()">
+                <label class="form-check-label" for="etsyCheck">Etsy -- In Production -- </label>
+            </div>
+
+            <br>
+
+            <!-- Cloudinary Fields -->
+            <div id="cloudinaryFields" style="display:none;">
+                <div class="form-group">
+                    <label for="cloudinaryImage">Upload Images to Cloudinary</label>
+                    <input type="file" class="form-control-file" id="cloudinaryImage" name="cloudinaryImage" multiple>
+                </div>
+            </div>
+
+            <!-- Facebook Fields -->
+            <div id="facebookFields" style="display:none">
+                <label for="facebookContent">Facebook Content:</label>
+                <textarea class="form-control" id="facebookContent" name="facebookContent"></textarea>
+            </div>
+
+            <!-- Reddit Fields -->
+            <div id="redditFields" style="display:none">
+                <label for="postTitle">Reddit Post Title:</label>
+                <input type="text" class="form-control" id="postTitle" name="postTitle">
+                <label for="subredditSelect">Choose Subreddit:</label>
+                <select class="form-control" id="subredditSelect" name="subreddit">
+                    <option value="test">Test</option>
+                    <option value="appleswap">AppleSwap</option>
+                    <option value="hardwareswap">HardwareSwap</option>
+                    <option value="buy_sell">Buy_Sell</option>
+                </select>
+                <label for="redditContent" id="redditContentLabel">Reddit Post Content:</label>
+                <textarea class="form-control" id="redditPostContent" name="redditPostContent"></textarea>
+            </div>
+
+            <!-- Combined Fields -->
+            <div id="combinedFields" style="display:none;">
+                <label for="combinedContent">Combined Content for Facebook and Reddit:</label>
+                <textarea class="form-control" id="combinedContent" name="combinedContent"></textarea>
+            </div>
+
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Upload and Post</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        &copy; 2023 Faugno | <a href="{{ url_for('upload_data') }}">Home</a> | <a href="{{ url_for('show_previous_posts') }}">View Local Storage Data</a>
+    </footer>
+
+    <script src="/static/upload.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combined Posts</title>
+</head>
+<body>
+    <h1>Your Posts have been Published</h1>
+    {% if reddit_url %}
+    <p><a href="{{ reddit_url }}">View your Reddit post</a></p>
+    {% endif %}
+    {% if facebook_url %}
+    <p><a href="{{ facebook_url }}">View your Facebook post</a></p>
+    {% endif %}
+        {% for url in image_urls %}
+        <li><a href="{{ url }}">Uploaded Image</a></li>
+        {% endfor %}
+</body>
+</html>
