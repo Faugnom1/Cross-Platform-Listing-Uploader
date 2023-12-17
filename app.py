@@ -3,7 +3,7 @@ import cloudinary.uploader
 import logging
 from cloudinary_handler import config_cloudinary 
 from reddit_handler import config_reddit, reddit, set_selling_flair
-from facebook_handler import post_to_facebook, page_id, my_store, post_with_image
+from facebook_handler import post_to_facebook, page_id, my_store, post_with_image, create_album_and_upload_images
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -19,6 +19,10 @@ def upload_data():
         cloudinary_files = request.files.getlist('cloudinaryImage')
         image_urls = [cloudinary.uploader.upload(file)['url'] for file in cloudinary_files if file]
         image_urls = [url.replace("%5B'", '').replace("'%5D", '') for url in image_urls]
+        print('-------')
+        print(image_urls)
+        print('-------')
+
     
     
         # Get post data
@@ -48,12 +52,15 @@ def upload_data():
             facebook_post_url = my_store
             if cloudinary_uploaded:
                 post_with_image(page_id, image_urls[0], facebook_content)
-                # if len(image_urls)>1:
-                #     create_album_and_upload_images(page_id, "New Album", image_urls, facebook_content)
-                # else:
-                #     post_with_image(page_id, image_urls[0], facebook_content)
+                print('-------')
+                print(image_urls)
+                print('-------')
+            if len(image_urls)>1:
+                create_album_and_upload_images(page_id, "New Album", image_urls, facebook_content)
             else:
-                post_to_facebook(page_id, facebook_content)
+                post_with_image(page_id, image_urls[0], facebook_content)
+        else:
+            post_to_facebook(page_id, facebook_content)
 
         # Reddit and Facebook Posting
         if combined_uploaded:
