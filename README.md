@@ -1,4 +1,4 @@
-# Capstone-1
+# Cross-Platform Listing Uploader
 Allows users to post listings on multiple marketplaces at once.
 
 Api:
