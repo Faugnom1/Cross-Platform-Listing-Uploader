@@ -1,7 +1,7 @@
 # Cross-Platform Listing Uploader
 Allows users to post listings on multiple marketplaces at once.
 
-Api:
+You must have your own dev accounts with the following marketplaces and input your personal keys.
 
 Cloudinary - https://cloudinary.com/documentation/image_upload_api_reference  
 Facebook - https://developers.facebook.com/docs/graph-api/  
